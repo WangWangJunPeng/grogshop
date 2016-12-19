@@ -1,0 +1,266 @@
+/*!
+ * Start Bootstrap - SB Admin Bootstrap Admin Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+.btn {
+    color: #fff;
+    background-color: #ee4b28;
+    border-radius: 3px;
+    padding: 5px 12px;
+    border: none;
+}
+.btn.warning {
+    background-color: #f74342;
+}
+body {
+    margin-top: 90px;
+    background-color: #fff;
+}
+body.grey {
+    background-color: #f2f2f2;
+}
+
+@media(min-width:768px) {
+    body {
+        margin-top: 90px;
+    }
+}
+
+#wrapper {
+    padding-left: 0;
+}
+body#welcome {
+    background: url(../images/welcome.jpg) no-repeat;
+}
+#page-wrapper {
+    width: 100%;
+    padding: 0 0 60px;
+    background-color: #fff;
+}
+body#welcome #page-wrapper {
+    background-color: transparent;
+}
+
+@media(min-width:768px) {
+
+    #page-wrapper {
+        padding: 42px 10px 60px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+}
+
+.top-nav>li {
+    display: inline-block;
+    float: left;
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+}
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: #f5b2a3;
+}
+
+.top-nav>.open>.dropdown-menu {
+    float: left;
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid #ee4b28;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
+
+/* Side Navigation */
+
+.side-nav {
+    background-color: #000;
+    position: fixed;
+    top: 51px;
+    left: 225px;
+    height: 40px;
+    margin-left: -225px;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    overflow-y: auto;
+    bottom: 0;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+}
+
+.side-nav li a:hover,
+.side-nav li a:focus {
+    outline: none;
+    background-color: #ee4b28 !important;
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none; 
+    color: #fff;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+/* Custom Colored Panels */
+
+.float-r {
+    float: right;
+}
+#employee-form,
+#goods-form {
+    display: none;
+}
+body.login {
+    background: url(../images/header.jpg) no-repeat;
+    position: relative;
+    margin-top: 150px;
+}
+body.login h3 {
+    color: #cdcdcd;
+    position: absolute;
+    font-size: 44px;
+    top: 20px;
+    left: 150px;
+}
+#login-form {
+    border-radius: 30px;
+    padding: 50px 30px 30px;
+    width: 450px;
+    height: 220px;
+    text-align: center;
+    margin: 40px auto;
+    border: 1px solid #fafafa;
+    background-color: #fff;
+    position: relative;
+    right: -250px;
+}
+#login-form form {
+    margin: 0 auto;
+    width: 400px;
+}
+#login-form table {
+    width: 80%;
+    margin: 0 auto;
+}
+#login-form td {
+    padding: 10px 10px;
+}
+#login-form td input {
+    min-width: 100px;
+    width: 100%;
+}
+#login-form .login-button {
+    font-size: 34px;
+}
+#welcome-msg .col_l {
+    text-align: right;
+    padding:50px 50px 0 0;
+}
+#welcome-msg .col_r {
+    text-align: left;
+    padding: 80px 0 0 0;
+}
+#shops-info-table .sName {
+    width: 17%;
+}
+#shops-info-table .phone {
+    width: 17%;
+}
+#shops-info-table .addr {
+    width: 36%;
+}
+#shops-info-table .time {
+    width: 10%;
+}
+#shops-info-table .status {
+    width: 10%;
+    text-align: center;
+}
+#shops-info-table .action {
+    width: 10%;
+}
+#shops-info-table .action button,
+#user-info-table .action button,
+#rider-info-table .action button,
+#order_list_table .action button{
+    margin: 0 auto;
+    display: block;
+}
+#order_list_table .orderId {
+    width: 8%;
+    background-color: #fff;
+}
+#order_list_table .sName {
+    width: 19%;
+    background-color: #f2f2f2;
+}
+#order_list_table .sAddr {
+    width: 25%;
+    background-color: #f2f2f2;
+}
+#order_list_table .sPhone {
+    width: 8%;
+    background-color: #f2f2f2;
+}
+#order_list_table .uName {
+    width: 8%;
+    background-color: #fff;
+}
+#order_list_table .uPhone {
+    width: 8%;
+    background-color: #fff;
+}
+#order_list_table .checkin,
+#order_list_table .checkout {
+    width: 7%;
+    background-color: #f7f7f7;
+}
+#order_list_table .status {
+    width: 5%;
+    background-color: #fff;
+}
+#order_list_table .action {
+    width: 5%;
+    background-color: #fff;
+}
+#search-from-list {
+    text-align: right;
+}
+#search-from-list input {
+    width: 30%;
+    float: right;
+}
+#search-from-list .btn {
+    padding: 7px 12px;
+}

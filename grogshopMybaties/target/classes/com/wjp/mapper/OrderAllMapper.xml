@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjp.mapper.OrderAllMapper" >
+	<resultMap type="com.wjp.pojo.OrderAll" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="shopName" property="shopName" jdbcType="VARCHAR"/>
+		<result column="address" property="address" jdbcType="VARCHAR"/>
+		<result column="shopPhone" property="shopPhone" jdbcType="VARCHAR"/>
+		<result column="userName" property="userName" jdbcType="VARCHAR"/>
+		<result column="userPhone" property="userPhone" jdbcType="VARCHAR"/>
+		<result column="checkIn_time" property="checkIn_time" jdbcType="TIMESTAMP"/>
+		<result column="checkOut_time" property="checkOut_time" jdbcType="TIMESTAMP"/>
+		<result column="orderStatus" property="orderStatus" jdbcType="VARCHAR"/>
+	</resultMap>
+
+	<select id="selectAllOrder" resultMap="BaseResultMap" >
+		SELECT 
+		    o.id id, g.name shopName,g.address address,g.phone shopPhone,u.name userName,
+		    u.phone userPhone,od.check_in_time checkIn_time,od.check_out_time checkOut_time,os.name orderStatus
+		FROM
+		    `order` o,
+		    grogshop g,
+		    o_detail od,
+		    order_status os,
+		    `user` u,
+		    g_room gr
+		WHERE
+		    o.g_room_id = gr.id
+		        AND gr.grogshop_id = g.id
+		        and o.o_detail_id=od.id
+		        and o.user_id=u.id
+		        and o.order_status_id = os.id
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wjp.pojo.OrderAll">
+		SELECT 
+		    o.id id, g.name shopName,g.address address,g.phone shopPhone,u.name userName,
+		    u.phone userPhone,od.check_in_time checkIn_time,od.check_out_time checkOut_time,os.name orderStatus
+		FROM
+		    `order` o,
+		    grogshop g,
+		    o_detail od,
+		    order_status os,
+		    `user` u,
+		    g_room gr
+		WHERE
+		    o.g_room_id = gr.id
+	        AND gr.grogshop_id = g.id
+	        and o.o_detail_id=od.id
+	        and o.user_id=u.id
+	        and o.order_status_id = os.id
+		 <if test="id != null">
+  			and o.id =#{id}
+  		</if>
+	</select>
+	
+</mapper>

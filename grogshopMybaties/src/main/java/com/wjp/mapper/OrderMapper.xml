@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjp.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wjp.pojo.Order" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ono" property="ono" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="o_detail_id" property="oDetailId" jdbcType="INTEGER" />
+    <result column="order_status_id" property="orderStatusId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="g_room_id" property="gRoomId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, ono, create_time, o_detail_id, order_status_id, user_id, g_room_id
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `order`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <update id="updateOrderStatus" parameterType="com.wjp.pojo.Order">
+  	update `order` set order_status_id=#{orderStatusId} where id=#{id}
+  </update>
+  <select id="selectOrders" resultMap="BaseResultMap">
+	select id,ono, create_time, o_detail_id, order_status_id, user_id, g_room_id from order
+  </select>
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wjp.pojo.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByExample" parameterType="com.wjp.pojo.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wjp.pojo.Order" >
+    insert into order (id, ono, create_time, 
+      o_detail_id, order_status_id, user_id, 
+      g_room_id)
+    values (#{id,jdbcType=INTEGER}, #{ono,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{oDetailId,jdbcType=INTEGER}, #{orderStatusId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{gRoomId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wjp.pojo.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ono != null" >
+        ono,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="oDetailId != null" >
+        o_detail_id,
+      </if>
+      <if test="orderStatusId != null" >
+        order_status_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="gRoomId != null" >
+        g_room_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ono != null" >
+        #{ono,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oDetailId != null" >
+        #{oDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusId != null" >
+        #{orderStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="gRoomId != null" >
+        #{gRoomId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wjp.pojo.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ono != null" >
+        ono = #{record.ono,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.oDetailId != null" >
+        o_detail_id = #{record.oDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderStatusId != null" >
+        order_status_id = #{record.orderStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gRoomId != null" >
+        g_room_id = #{record.gRoomId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set id = #{record.id,jdbcType=INTEGER},
+      ono = #{record.ono,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      o_detail_id = #{record.oDetailId,jdbcType=INTEGER},
+      order_status_id = #{record.orderStatusId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      g_room_id = #{record.gRoomId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wjp.pojo.Order" >
+    update order
+    <set >
+      <if test="ono != null" >
+        ono = #{ono,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oDetailId != null" >
+        o_detail_id = #{oDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatusId != null" >
+        order_status_id = #{orderStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="gRoomId != null" >
+        g_room_id = #{gRoomId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wjp.pojo.Order" >
+    update order
+    set ono = #{ono,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      o_detail_id = #{oDetailId,jdbcType=INTEGER},
+      order_status_id = #{orderStatusId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      g_room_id = #{gRoomId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

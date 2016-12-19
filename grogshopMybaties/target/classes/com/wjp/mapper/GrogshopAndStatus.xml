@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjp.mapper.GrogshopAndStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.wjp.pojo.GrogshopAndStatus" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="apply_time" property="apply_time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectGrogshopAndStatus" resultMap="BaseResultMap">
+  	select g.id, g.name, g.phone, g.address, a.apply_time,gs.name status from grogshop g, apply a, g_status gs 
+  	where g.g_status_id=gs.id and g.id = a.id
+  </select>
+  <select id="selectByGS" resultMap="BaseResultMap" parameterType="com.wjp.pojo.GrogshopAndStatus">
+  	select g.id, g.name, g.phone, g.address, a.apply_time,gs.name status from grogshop g, apply a, g_status gs 
+  	where g.g_status_id=gs.id and g.id = a.id 
+  	<if test="name != null">
+  		and g.name like  '%' #{name} '%'
+  	</if>
+  </select>
+  
+ </mapper>
